@@ -13,7 +13,16 @@
   },
   "filesOrder": {
     "config_id": "filesOrder",
-    "App.css": "2"
+    "files": {
+      "1": [
+        "img/back.jpg",
+        "store.js"
+      ],
+      "2": [
+        "index.js",
+        "img/logo.svg"
+      ]
+    }
   }
 }
 

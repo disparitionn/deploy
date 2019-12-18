@@ -5,13 +5,28 @@ const config = require('./config.js');
 const fs = require('fs');
 let path = require('path');
 
-const remoteDir = config.remoteDir.toString();
-const localDir = config.localDir.toString();
+const remoteDir = config.remoteDir;
+const localDir = config.localDir;
 const defaultConfig = config.defaultConfig;
+const filesOrder = config.filesOrder;
 
 let files = [];
+let lowPriorityFiles = [];
+
+
+const filePriority = (file) => {
+    lowPriorityFiles = JSON.parse(filesOrder);
+    console.log(lowPriorityFiles)
+
+    /*if (filesOrder.find(file)){
+        lowPriorityFiles.push(file)
+    }*/
+
+    return lowPriorityFiles;
+};
 
 let bypass = function (dir, done, rootPath) {
+    filePriority()
     let results = [];
     rootPath = rootPath || `${__dirname}/${dir}/`;
     rootPath = rootPath.replace(/\/deploy/g, '');
@@ -46,6 +61,8 @@ bypass(localDir, function (err, results) {
     if (err) throw err;
     files = results;
 });
+
+
 
 const upload = () => {
     return new Promise(async (resolve, reject) => {
@@ -92,9 +109,9 @@ const sftp = new Client();
         await sftp.connect(defaultConfig);
         const p = await sftp.cwd();
         console.log(`Remote working directory is ${p}`);
-        await upload();
+        //await upload();
         await sftp.end();
-        console.log('------------Deploy was successfully completed------------');
+        console.log('------------Deploy was completed------------');
     } catch (e) {
         console.log(`ERROR: ${e.message}`);
     }
