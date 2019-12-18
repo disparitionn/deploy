@@ -1,0 +1,21 @@
+{
+  "config": {
+    "config_id": "config",
+    "host": "192.168.1.121",
+    "port": "22",
+    "username": "user",
+    "password": "user"
+  },
+  "paths": {
+    "config_id": "paths",
+    "localDir": "client/src",
+    "remoteDir": "remote-folder/src"
+  },
+  "filesOrder": {
+    "config_id": "filesOrder",
+    "App.css": "2"
+  }
+}
+
+
+
